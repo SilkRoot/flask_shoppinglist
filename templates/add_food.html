@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Form{% endblock %}
+
+{% block content %}
+<p>aktuelle Einkaufsliste</p>
+<form action="#" method="POST" name="test1">
+    {% for i in shoppinglist %}
+        <p><input hidden_element="hidden" type="submit" name="submit_button_shoppinglist" value={{ i.item }}></input></p>
+    {% endfor %}
+</form>
+<p>Zur Liste hinzufügen: </p>
+<form action="#" method="POST" name="test2">
+    {% for item in items %}
+        <p><input hidden_element="hidden" type="submit" name="submit_button_itemlist" value={{ item.item }}></input></p>
+    {% endfor %}
+</form>
+<form action="#" method="POST" name="text3">
+    <input type="submit" name="test" value="test">
+        <input type="text" name="text" value="text"/>
+    </input>
+</form>
+{% endblock %}
