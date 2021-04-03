@@ -3,21 +3,43 @@
 {% block title %}Form{% endblock %}
 
 {% block content %}
-<p>aktuelle Einkaufsliste</p>
-<form action="#" method="POST" name="test1">
-    {% for i in shoppinglist %}
-        <p><input hidden_element="hidden" type="submit" name="submit_button_shoppinglist" value={{ i.item }}></input></p>
+    <div class="row">
+        <div class="eleven columns">
+            <h3>aktuelle Einkaufsliste</h3>
+        </div>
+    </div>
+    {% for i in cur_shoppinglist %}
+        {% if loop.index is divisibleby 4 %}<div class="row">{% endif %}
+            <div class="three columns">
+                <form action="#" method="POST">
+                    <p><input hidden_element="hidden" type="submit" name="submit_button_shoppinglist" value={{ i.item }}></input></p>
+                </form>
+            </div>
+        {% if loop.index is divisibleby 4 %}</div>{% endif %}
     {% endfor %}
-</form>
-<p>Zur Liste hinzufügen: </p>
-<form action="#" method="POST" name="test2">
-    {% for item in items %}
-        <p><input hidden_element="hidden" type="submit" name="submit_button_itemlist" value={{ item.item }}></input></p>
+    <div class="row">
+        <div class="eleven columns">
+            <h3>Zur Liste hinzufügen</h3>
+        </div>
+    </div>
+    {% for i in all_foodtype %}
+        <div class="row">
+            <div class="eleven columns">
+                <h5>{{ i.food_type }}</h5>
+            </div>
+        </div>
+
+        {% for j in all_fooditem %}
+            {% if loop.index is divisibleby 4 %}<div class="row">{% endif %}
+                {% if i.id == j.food_type_id %}
+                    <div class="three columns">
+
+                        <form action="#" method="POST">
+                            <input class="button_element" type="submit" name={{ j.id }} value={{ j.item }}></input>
+                        </form>
+                    </div>
+                {% endif %}
+            {% if loop.index is divisibleby 4 %}</div>{% endif %}
+        {% endfor %}
     {% endfor %}
-</form>
-<form action="#" method="POST" name="text3">
-    <input type="submit" name="test" value="test">
-        <input type="text" name="text" value="text"/>
-    </input>
-</form>
 {% endblock %}
