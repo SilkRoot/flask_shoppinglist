@@ -9,14 +9,22 @@
         </div>
     </div>
     {% for i in cur_shoppinglist %}
-        {% if loop.index is divisibleby 4 %}<div class="row">{% endif %}
+        {% if loop.index0 is divisibleby 4 or loop.first %}<div class="row">{% endif %}
             <div class="three columns">
                 <form action="#" method="POST">
-                    <p><input hidden_element="hidden" type="submit" name="submit_button_shoppinglist" value={{ i.item }}></input></p>
+                    <input class="button_element" type="submit" name={{ i.id }} value={{ i.item }}></input>
                 </form>
             </div>
-        {% if loop.index is divisibleby 4 %}</div>{% endif %}
+        {% if loop.index is divisibleby 4 or loop.last %}</div>{% endif %}
     {% endfor %}
+    <div class="row">
+        <div class="eleven">
+            <form action="#" method="POST">
+                <input class="six" type="text" placeholder="Item hinzufügen">
+                <input class="three" type="submit" name="submit_button_shoppinglist" value="free_input"></input>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="eleven columns">
             <h3>Zur Liste hinzufügen</h3>
@@ -30,16 +38,15 @@
         </div>
 
         {% for j in all_fooditem %}
-            {% if loop.index is divisibleby 4 %}<div class="row">{% endif %}
-                {% if i.id == j.food_type_id %}
+            {% if i.id == j.food_type_id %}
+                {% if loop.index0 is divisibleby 4 or loop.first %}<div class="row">{% endif %}
                     <div class="three columns">
-
                         <form action="#" method="POST">
-                            <input class="button_element" type="submit" name={{ j.id }} value={{ j.item }}></input>
+                            <input class="button_element" type="submit" name={{ j.id }} value={{j.item }}></input>
                         </form>
                     </div>
-                {% endif %}
-            {% if loop.index is divisibleby 4 %}</div>{% endif %}
+                {% if loop.index is divisibleby 4 or loop.last %}</div>{% endif %}
+            {% endif %}
         {% endfor %}
     {% endfor %}
 {% endblock %}

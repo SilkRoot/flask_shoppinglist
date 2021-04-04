@@ -9,10 +9,17 @@
 }
 
 .button_element {
-/*    float: left;
     height: 150px;
     width: 150px;
     padding-left: 10px;
     padding-right: 10px;
-*/
 }
+
+
+#cur_shoppinglist {
+    height: auto;
+}
+
+#free_input{
+
+}*/
